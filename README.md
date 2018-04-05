@@ -9,16 +9,16 @@ Android Doze Tweaks
 
 ## Goal
 
- - understand Doze **behaviour** and **parameters** from its internal implementation
+ - understand Doze **behaviour** and **parameters** from its internal [implementation](https://github.com/aosp-mirror/platform_frameworks_base/blob/nougat-release/services/core/java/com/android/server/DeviceIdleController.java)
  - tune Doze parameters to further improve battery usage
  - without installing extra Apps
  - without root access
 
 ## Caveat
 
- - Original Doze (or Deep Doze) availble on Android 6+ and Light Doze on Android 7+.
- - Deep Doze would only work if there is any motion sensor available (fallback on ```Sensor.TYPE_SIGNIFICANT_MOTION```)
-   - Some battery saving Apps would disable (i.e. actually ```restrict```) sensors to other Apps, but Deep Doze will still have to depend on motion sensors.
+ - Original Doze (or Deep Doze) availble on Android 6+ and Light Doze only on Android 7+.
+ - Deep Doze would only work if there is any motion sensor available (fallback on [significant motion sensor](https://github.com/aosp-mirror/platform_frameworks_base/blob/nougat-release/core/java/android/hardware/Sensor.java#L317))
+   - Some battery saving Apps would disable (i.e. actually [restrict](https://android.googlesource.com/platform/frameworks/native/+/nougat-release/services/sensorservice/SensorService.h#119)) sensors from other Apps, but Deep Doze will still have to [depend](https://github.com/aosp-mirror/platform_frameworks_base/blob/nougat-release/services/core/java/com/android/server/DeviceIdleController.java#L2248) on motion sensors.
  - tuning Doze parameters from external ```adb``` interface is not very convenient in case that you want to change them freqeuntly and directly on your Android.
  
 ## Quick Start
