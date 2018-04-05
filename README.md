@@ -19,7 +19,7 @@ Android Doze Tweaks
  - Original Doze (or Deep Doze) availble on Android 6+ and Light Doze on Android 7+.
  - Deep Doze would only work if there is any motion sensor available (fallback on ```Sensor.TYPE_SIGNIFICANT_MOTION```)
    - Some battery saving Apps would disable (i.e. actually ```restrict```) sensors to other Apps, but Deep Doze will still have to depend on motion sensors.
- - tuning Doze parameters from external ```adb``` interface is not suiable in case that you want to change them freqeuntly and directly on your Android.
+ - tuning Doze parameters from external ```adb``` interface is not very convenient in case that you want to change them freqeuntly and directly on your Android.
  
 ## Quick Start
 
@@ -41,7 +41,7 @@ $ adb shell dumpsys deviceidle
     locating_to=+30s0ms
     ...
 ```
-Inspect current customized Doze parameters. It returns ```null``` if none has been set.
+Inspect any customized Doze parameter. It returns ```null``` if none has been set.
 ```
 $ adb shell settings get global device_idle_constants
 null
