@@ -9,8 +9,8 @@ Android Doze Tweaks
 
 ## Goal
 
- - understand Doze behaviour from its internal implementation
- - tune Doze settings to further improve battery usage
+ - understand Doze **behaviour** and **parameters** from its internal implementation
+ - tune Doze parameters to further improve battery usage
  - without installing extra Apps
  - without root access
 
@@ -19,7 +19,7 @@ Android Doze Tweaks
  - Original Doze (or Deep Doze) availble on Android 6+ and Light Doze on Android 7+.
  - Deep Doze would only work if there is any motion sensor available (fallback on ```Sensor.TYPE_SIGNIFICANT_MOTION```)
    - Some battery saving Apps would disable (i.e. actually ```restrict```) sensors to other Apps, but Deep Doze will still have to depend on motion sensors.
- - tuning Doze settings from external ```adb``` interface is not suiable in case that you want to change setting freqeuntly and directly on your Android.
+ - tuning Doze parameters from external ```adb``` interface is not suiable in case that you want to change them freqeuntly and directly on your Android.
  
 ## Quick Start
 
@@ -41,18 +41,18 @@ $ adb shell dumpsys deviceidle
     locating_to=+30s0ms
     ...
 ```
-Inspect current customized Doze settings. It returns ```null``` if no customized settings has been set.
+Inspect current customized Doze parameters. It returns ```null``` if none has been set.
 ```
 $ adb shell settings get global device_idle_constants
 null
 ```
-Set customized Doze settings.
+Set customized Doze parameters.
 ```
 adb shell settings put global device_idle_constants light_after_inactive_to=15000,...
 ```
-@TODO: make some real setting examples to use!
+@TODO: make some real examples to use!
 
-Reset customized Doze settings to default.
+Reset customized Doze parameters to default.
 ```
 adb shell settings delete global device_idle_constants
 ```
