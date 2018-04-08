@@ -1,6 +1,7 @@
 # doze-tweak
 
-Understand **device idle state** trainsition and have some ```device_idle_constants``` settings examples
+Understand **device idle state** trainsition and tune ```device_idle_constants``` settings properly!
+
 ## Prerequisite 
 
  - Android 6+ with [Doze](https://developer.android.com/training/monitoring-device-state/doze-standby.html)
@@ -58,8 +59,8 @@ $ adb shell settings delete global device_idle_constants
 
 ## Doze Device Idle State Transition
 
- - Actually there are two state machine running in parallel 
- - Any **IDLE** state is where Doze is active and battery usaage gets reduced. 
+ - Actually there are two state machines running in parallel 
+ - In any **IDLE** state the Doze mode is active and battery usaage gets reduced. 
  
 ![Light Doze](diagram/light-doze.svg)
 
