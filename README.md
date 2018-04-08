@@ -1,7 +1,6 @@
 # doze-tweak
 
-Android Doze Tweaks
-
+Understand **device idle state** trainsition and some ```device_idle_constants``` settings examples
 ## Prerequisite 
 
  - Android 6+ with [Doze](https://developer.android.com/training/monitoring-device-state/doze-standby.html)
@@ -9,15 +8,15 @@ Android Doze Tweaks
 
 ## Goal
 
- - understand Doze **behavior** and **parameters** from its internal [implementation](https://github.com/aosp-mirror/platform_frameworks_base/blob/nougat-release/services/core/java/com/android/server/DeviceIdleController.java)
- - tune Doze parameters to further improve battery usage
+ - understand Doze internal [implementation](https://github.com/aosp-mirror/platform_frameworks_base/blob/nougat-release/services/core/java/com/android/server/DeviceIdleController.java)
+ - tune ```device_idle_constants``` settings to use Doze in a flexibel way
  - without installing extra Apps
  - without root access
 
 ## Caveat
 
  - Original Doze (or Deep Doze) available on Android 6+ and Light Doze only on Android 7+.
- - Deep Doze would only work if there is any motion sensor available (fallback on [significant motion sensor](https://github.com/aosp-mirror/platform_frameworks_base/blob/nougat-release/core/java/android/hardware/Sensor.java#L317))
+ - Deep Doze would only work if there is any motion sensor available (fallback on [significant motion sensor](https://github.com/aosp-mirror/platform_frameworks_base/blob/nougat-release/services/core/java/com/android/server/DeviceIdleController.java#L1379))
    - Some battery saving Apps would disable (i.e. actually [restrict](https://android.googlesource.com/platform/frameworks/native/+/nougat-release/services/sensorservice/SensorService.h#119)) sensors from other Apps, but Deep Doze will still have to [depend](https://github.com/aosp-mirror/platform_frameworks_base/blob/nougat-release/services/core/java/com/android/server/DeviceIdleController.java#L2248) on motion sensors.
  - tuning Doze parameters from external ```adb``` interface is not very convenient in case that you want to change them frequently and directly on your Android.
  
@@ -57,7 +56,7 @@ Reset customized Doze parameters to default.
 adb shell settings delete global device_idle_constants
 ```
 
-## Insight
+## Doze Device Idle State Transition
 
 ![Light Doze](diagram/light-doze.svg)
 
