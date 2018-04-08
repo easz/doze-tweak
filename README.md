@@ -1,6 +1,6 @@
 # doze-tweak
 
-Understand **device idle state** trainsition and some ```device_idle_constants``` settings examples
+Understand **device idle state** trainsition and have some ```device_idle_constants``` settings examples
 ## Prerequisite 
 
  - Android 6+ with [Doze](https://developer.android.com/training/monitoring-device-state/doze-standby.html)
@@ -18,11 +18,11 @@ Understand **device idle state** trainsition and some ```device_idle_constants``
  - Original Doze (or Deep Doze) available on Android 6+ and Light Doze only on Android 7+.
  - Deep Doze would only work if there is any motion sensor available (fallback on [significant motion sensor](https://github.com/aosp-mirror/platform_frameworks_base/blob/nougat-release/services/core/java/com/android/server/DeviceIdleController.java#L1379))
    - Some battery saving Apps would disable (i.e. actually [restrict](https://android.googlesource.com/platform/frameworks/native/+/nougat-release/services/sensorservice/SensorService.h#119)) sensors from other Apps, but Deep Doze will still have to [depend](https://github.com/aosp-mirror/platform_frameworks_base/blob/nougat-release/services/core/java/com/android/server/DeviceIdleController.java#L2248) on motion sensors.
- - tuning Doze parameters from external ```adb``` interface is not very convenient in case that you want to change them frequently and directly on your Android.
+ - tuning Doze settings from external ```adb``` interface is not very convenient in case that you want to change them frequently and directly on your Android.
  
-## Quick Start
+## Usage & Example
 
-Inspect current Doze parameters from ```deviceidle```
+Inspect current Doze settings from ```deviceidle```
 ```
 $ adb shell dumpsys deviceidle
   Settings:
@@ -40,24 +40,27 @@ $ adb shell dumpsys deviceidle
     locating_to=+30s0ms
     ...
 ```
-Inspect any customized Doze parameter. It returns ```null``` if none has been set.
+Inspect any customized Doze settings. It returns ```null``` if none has been set.
 ```
 $ adb shell settings get global device_idle_constants
 null
 ```
-Set customized Doze parameters.
+Set customized Doze settings.
 ```
-adb shell settings put global device_idle_constants light_after_inactive_to=15000,...
+$ adb shell settings put global device_idle_constants light_after_inactive_to=15000,...
 ```
 @TODO: make some real examples to use!
 
-Reset customized Doze parameters to default.
+Reset customized Doze settings to default.
 ```
-adb shell settings delete global device_idle_constants
+$ adb shell settings delete global device_idle_constants
 ```
 
 ## Doze Device Idle State Transition
 
+ - Actually there are two state machine running in parallel 
+ - Any **IDLE** state is where Doze is active and battery usaage gets reduced. 
+ 
 ![Light Doze](diagram/light-doze.svg)
 
 ![Deep Doze](diagram/deep-doze.svg)
