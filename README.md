@@ -10,7 +10,8 @@ Understand **device idle state** trainsition and tune ```device_idle_constants``
 ## Goal
 
  - understand Doze internal [implementation](https://github.com/aosp-mirror/platform_frameworks_base/blob/nougat-release/services/core/java/com/android/server/DeviceIdleController.java)
- - tune ```device_idle_constants``` settings to use Doze in a flexibel way
+ - tune ```device_idle_constants``` settings for usual phones to use Doze in a flexibel way
+   - ```device_idle_constants_watch``` for wearable watches
  - without installing extra Apps
  - without root access
 
