@@ -22,6 +22,8 @@ Understand **device idle state** transition and tune ```device_idle_constants```
    - Some battery saving Apps would disable (i.e. actually [restrict](https://android.googlesource.com/platform/frameworks/native/+/nougat-release/services/sensorservice/SensorService.h#119)) sensors to other Apps, but Deep Doze will still have to [depend](https://github.com/aosp-mirror/platform_frameworks_base/blob/nougat-release/services/core/java/com/android/server/DeviceIdleController.java#L2248) on motion sensors.
  - tuning Doze settings from external ```adb``` interface is not very convenient in case that you want to change them frequently and directly on your Android.
  
+[Here](https://medium.com/@tsungi/android-doze-tweaks-83dadb5b4a9a) is more background and detail.
+
 ## Usage & Example
 
 Inspect current Doze settings from ```deviceidle```
