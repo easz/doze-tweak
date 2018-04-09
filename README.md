@@ -61,7 +61,7 @@ To ignore Light Doze for whatever reason by doing similar setup with ```light_af
 $ adb shell settings put global device_idle_constants light_after_inactive_to=2592000000
 ```
 
-To ignore Deep Doze and use Light Doze mimic Deep Doze.
+To ignore Deep Doze and use Light Doze mimic Deep Doze (i.e. applying Deep Doze timing to Light Doze).
 ```
 $ adb shell settings put global device_idle_constants inactive_to=2592000000,motion_inactive_to=2592000000,light_after_inactive_to=3000000,light_max_idle_to=21600000,light_idle_to=3600000,light_idle_maintenance_max_budget=600000,min_light_maintenance_time=30000
 ```
