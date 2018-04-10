@@ -13,7 +13,7 @@ Understand **device idle state** transition and tune ```device_idle_constants```
  - tune ```device_idle_constants``` settings for usual phones to use Doze in a flexibel way
    - ```device_idle_constants_watch``` for wearable watches
  - without installing extra Apps
- - without root access
+ - without root access whenever possible
 
 ## Caveat
 
