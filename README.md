@@ -60,7 +60,7 @@ null
 ```
 Configure customized Doze settings.
 
-To ignore Deep Doze and discard any motion by increasing ```inactive_to``` (and ```motion_inactive_to```) timeout to a very large number (e.g. 30 days) so that Deep Doze never goes into its IDLE state and only Light Doze can manage to its IDLE state. (Note: Deep Doze saves more battery!)
+To ignore Deep Doze and discard any motion by increasing ```inactive_to``` (and ```motion_inactive_to```) timeout to a very large number (e.g. 30 days) so that Deep Doze never goes into its IDLE state and only Light Doze can manage to its IDLE state. 
 ```
 $ adb shell settings put global device_idle_constants inactive_to=2592000000,motion_inactive_to=2592000000
 ```
