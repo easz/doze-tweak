@@ -580,14 +580,14 @@
 			</g>
 			<g id="shape135-181" v:mID="135" v:groupContext="groupContent">
 				<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
-				<v:textRect cx="-47.0931" cy="547.553" width="154.22" height="27.2035"/>
+				<v:textRect cx="-71.7546" cy="547.553" width="154.22" height="27.2035"/>
 				<path d="M7.09 535.82 L7.09 560.1" class="st10"/>
-				<rect v:rectContext="textBkgnd" x="-118.388" y="537.954" width="144.401" height="19.1997" class="st17"/>
-				<text x="-118.39" y="545.15" class="st21" v:langID="1033"><v:paragraph v:horizAlign="2"/><v:tabList/>inactive_to<tspan
+				<rect v:rectContext="textBkgnd" x="-143.049" y="537.954" width="144.401" height="19.1997" class="st17"/>
+				<text x="-143.05" y="545.15" class="st21" v:langID="1033"><v:paragraph v:horizAlign="2"/><v:tabList/>inactive_to<tspan
 							class="st22"> </tspan><tspan class="st22">timeout</tspan><tspan class="st22" v:langID="1031"> </tspan><tspan
 							class="st22" v:langID="1031">(</tspan><tspan class="st22" v:langID="1031">AnyMotionDetector</tspan><tspan
 							class="st22" v:langID="1031">)</tspan><tspan class="st22"> </tspan><tspan class="st23">||<v:lf/></tspan><tspan
-							x="-118.11" dy="1.2em" class="st6">motion</tspan>_inactive_to<tspan class="st22"> </tspan><tspan
+							x="-142.78" dy="1.2em" class="st6">motion</tspan>_inactive_to<tspan class="st22"> </tspan><tspan
 							class="st22">timeout</tspan><tspan class="st22" v:langID="1031"> </tspan><tspan class="st22">(</tspan><tspan
 							class="st22">MotionSensor</tspan><tspan class="st22">)</tspan></text>			</g>
 		</g>
