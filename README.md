@@ -22,6 +22,13 @@ Understand **device idle state** transition and tune ```device_idle_constants```
    - Some battery saving Apps would disable (i.e. actually [restrict](https://android.googlesource.com/platform/frameworks/native/+/nougat-release/services/sensorservice/SensorService.h#119)) sensors to other Apps, but Deep Doze will still have to [depend](https://github.com/aosp-mirror/platform_frameworks_base/blob/nougat-release/services/core/java/com/android/server/DeviceIdleController.java#L2248) on motion sensors.
  - Deep Doze saves more battery then Light Doze!
  - tuning Doze settings from external ```adb``` interface is not very convenient in case that you want to change them frequently and directly on your Android.
+ - To prevent Google Service to reset ```device_idle_constants```: [Solution](https://forum.xda-developers.com/android/apps-games/root-doze-settings-editor-android-t3235130/page144)
+ ```
+  2 methods:
+  sqlite3 /data/data/com.google.android.gms/databases/phenotype.db "DELETE FROM Flags WHERE name = 'device_idle_constants';"
+  or
+  pm disable --user 0 com.google.android.gms/.phenotype.service.sync.PhenotypeConfigurator
+ ```
  
 [Here](https://medium.com/@tsungi/android-doze-tweaks-83dadb5b4a9a) is more background and detail.
 
@@ -62,7 +69,7 @@ To ignore Light Doze for whatever reason by doing similar setup with ```light_af
 $ adb shell settings put global device_idle_constants light_after_inactive_to=2592000000
 ```
 
-To ignore Deep Doze and use Light Doze mimic Deep Doze (i.e. applying Deep Doze timing to Light Doze).
+To ignore Deep Doze and use Light Doze mimic Deep Doze timing.
 ```
 $ adb shell settings put global device_idle_constants inactive_to=2592000000,motion_inactive_to=2592000000,light_after_inactive_to=3000000,light_max_idle_to=21600000,light_idle_to=3600000,light_idle_maintenance_max_budget=600000,min_light_maintenance_time=30000
 ```
