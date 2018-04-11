@@ -13,14 +13,15 @@ Understand **device idle state** transition and tune ```device_idle_constants```
  - tune ```device_idle_constants``` settings for usual phones to use Doze in a flexibel way
    - ```device_idle_constants_watch``` for wearable watches
  - without installing extra Apps
- - without root access whenever possible
+ - root access only for setup
 
 ## Caveat
 
  - Original Doze (or Deep Doze) available on Android 6+ and Light Doze only on Android 7+.
  - Deep Doze would only work if there is any motion sensor available (fallback on [significant motion sensor](https://github.com/aosp-mirror/platform_frameworks_base/blob/nougat-release/services/core/java/com/android/server/DeviceIdleController.java#L1379))
+   - Older phone without such motion sensor (e.g. SMD) cannot be benefited from Deep Doze.
    - Some battery saving Apps would disable (i.e. actually [restrict](https://android.googlesource.com/platform/frameworks/native/+/nougat-release/services/sensorservice/SensorService.h#119)) sensors to other Apps, but Deep Doze will still have to [depend](https://github.com/aosp-mirror/platform_frameworks_base/blob/nougat-release/services/core/java/com/android/server/DeviceIdleController.java#L2248) on motion sensors.
- - Deep Doze' idle may have more impac then Light one.
+ - Deep Doze' idle may have more impac then Light one (e.g. [UsageStatsService](https://github.com/aosp-mirror/platform_frameworks_base/blob/nougat-release/services/usage/java/com/android/server/usage/UsageStatsService.java#L527).
  - tuning Doze settings from external ```adb``` interface is not very convenient in case that you want to change them frequently and directly on your Android.
  - To prevent Google Service to reset ```device_idle_constants```: [Solution](https://forum.xda-developers.com/android/apps-games/root-doze-settings-editor-android-t3235130/page144)
  ```
