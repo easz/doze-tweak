@@ -22,6 +22,7 @@ Understand **device idle state** transition and tune ```device_idle_constants```
    - Older phone without such motion sensor (e.g. SMD) cannot be benefited from Deep Doze.
    - Some battery saving Apps would disable (i.e. actually [restrict](https://android.googlesource.com/platform/frameworks/native/+/nougat-release/services/sensorservice/SensorService.h#119)) sensors to other Apps, but Deep Doze will still have to [depend](https://github.com/aosp-mirror/platform_frameworks_base/blob/nougat-release/services/core/java/com/android/server/DeviceIdleController.java#L2248) on motion sensors.
  - Deep Doze' idle may have more impact than Light one (e.g. [UsageStatsService](https://github.com/aosp-mirror/platform_frameworks_base/blob/nougat-release/services/usage/java/com/android/server/usage/UsageStatsService.java#L527)).
+ - Apps with WakeLock, white-listed or without respect to Doze idle will still consume significant battery power during Doze idle!
  - tuning Doze settings from external ```adb``` interface is not very convenient in case that you want to change them frequently and directly on your Android.
  - To prevent Google Service to reset ```device_idle_constants```: [Solution](https://forum.xda-developers.com/android/apps-games/root-doze-settings-editor-android-t3235130/page144)
  ```
@@ -30,6 +31,7 @@ Understand **device idle state** transition and tune ```device_idle_constants```
   or
   pm disable --user 0 com.google.android.gms/.phenotype.service.sync.PhenotypeConfigurator
  ```
+ - Use [Battery Historian](https://developer.android.com/studio/profile/battery-historian.html) to identify actual problem causgin battery drain.
  
 [Here](https://medium.com/@tsungi/android-doze-tweaks-83dadb5b4a9a) is more background and detail.
 
@@ -73,6 +75,10 @@ $ adb shell settings put global device_idle_constants light_after_inactive_to=25
 To ignore Deep Doze and use Light Doze mimic Deep Doze timing.
 ```
 $ adb shell settings put global device_idle_constants inactive_to=2592000000,motion_inactive_to=2592000000,light_after_inactive_to=3000000,light_max_idle_to=21600000,light_idle_to=3600000,light_idle_maintenance_max_budget=600000,min_light_maintenance_time=30000
+```
+To idle causaully at the begining and increasingly keep idle as much as possible without taking motion into account by ignoring the real Deep Doze and tuning Light Doze so that it will begin idle less than one minute after phone inactive and stay idle from 30 minutes to 24 hours with increasing factor 1.5; Maintenance task would be performed for maximal 30 seconds and any alarm allowed to wake up Doze from idle would take less effect.
+```
+$ adb shell settings put global device_idle_constants inactive_to=2592000000,motion_inactive_to=2592000000,light_after_inactive_to=20000,light_pre_idle_to=30000,light_max_idle_to=86400000,light_idle_to=1800000,light_idle_factor=1.5,light_idle_maintenance_max_budget=30000,light_idle_maintenance_min_budget=10000,min_time_to_alarm=60000
 ```
 
 To idle as much as possible without taking motion into account by ignoring the real Deep Doze and tuning Light Doze so that it will be trapped in IDLE state as long as possible. Maintenance task would be performed about twice a day for maximal 30 seconds and any alarm allowed to wake up Doze from idle would take less effect.
