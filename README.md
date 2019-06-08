@@ -32,8 +32,6 @@ Understand **device idle state** transition and tune ```device_idle_constants```
   pm disable --user 0 com.google.android.gms/.phenotype.service.sync.PhenotypeConfigurator
  ```
  - Use [Battery Historian](https://developer.android.com/studio/profile/battery-historian.html) to identify actual problem causgin battery drain.
- 
-[Here](https://medium.com/@tsungi/android-doze-tweaks-83dadb5b4a9a) is more background and detail.
 
 ## Usage & Example
 
