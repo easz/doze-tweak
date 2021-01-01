@@ -24,7 +24,7 @@ Understand **device idle state** transition and tune ```device_idle_constants```
  - Deep Doze' idle may have more impact than Light one (e.g. [UsageStatsService](https://github.com/aosp-mirror/platform_frameworks_base/blob/nougat-release/services/usage/java/com/android/server/usage/UsageStatsService.java#L527)).
  - Apps with WakeLock, white-listed or without respect to Doze idle will still consume significant battery power during Doze idle!
  - tuning Doze settings from external ```adb``` interface is not very convenient in case that you want to change them frequently and directly on your Android.
- - To prevent Google Service to reset ```device_idle_constants```: [Solution](https://forum.xda-developers.com/android/apps-games/root-doze-settings-editor-android-t3235130/page144)
+ - To prevent Google Service to reset ```device_idle_constants```: [Solution](https://forum.xda-developers.com/android/apps-games/root-doze-settings-editor-android-t3235130/page144) (for Android Marshmallow)
  ```
   2 methods:
   sqlite3 /data/data/com.google.android.gms/databases/phenotype.db "DELETE FROM Flags WHERE name = 'device_idle_constants';"
